@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #define tamanho_fila 3 
+#define loop 4
 
 int i = 0, j = 0, cont = 0;
 
@@ -61,32 +62,45 @@ void *consumidor(){
 void *prodClock (){
     
     Clock clock1;
-
-    clock1.p[0] = 1;
-    clock1.p[1] = 1;
-    clock1.p[2] = 1;
-    produtor(clock1);
-    clock1.p[0] = 2;
-    clock1.p[1] = 2;
-    clock1.p[2] = 2;
-    produtor(clock1);
-    clock1.p[0] = 3;
-    clock1.p[1] = 3;
-    clock1.p[2] = 3;
-    produtor(clock1);
-    clock1.p[0] = 4;
-    clock1.p[1] = 4;
-    clock1.p[2] = 4;
-    produtor(clock1);
+    int k = 0;
+    
+    while(k <= loop){
+    
+        clock1.p[0] = 1;
+        clock1.p[1] = 1;
+        clock1.p[2] = 1;
+        produtor(clock1);
+        clock1.p[0] = 2;
+        clock1.p[1] = 2;
+        clock1.p[2] = 2;
+        produtor(clock1);
+        clock1.p[0] = 3;
+        clock1.p[1] = 3;
+        clock1.p[2] = 3;
+        produtor(clock1);
+        clock1.p[0] = 4;
+        clock1.p[1] = 4;
+        clock1.p[2] = 4;
+        produtor(clock1);
+        k++;
+        
+    }
     
 }
  
 void *consumClock (){
     
-    consumidor();
-    consumidor();
-    consumidor();
-    consumidor();
+    int k = 0;
+    
+    while(k <= loop){
+        
+        consumidor();
+        consumidor();
+        consumidor();
+        consumidor();
+        k++;
+        
+    }
     
 }
 
